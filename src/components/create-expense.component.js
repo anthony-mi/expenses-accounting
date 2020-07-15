@@ -8,6 +8,9 @@ export default class CreateExpense extends Component {
   constructor(props) {
     super(props);
 
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeInitialValue = this.onChangeInitialValue.bind(this);
     this.createExpense = this.createExpense.bind(this);
     this.newExpense = this.newExpense.bind(this);
 
@@ -20,15 +23,21 @@ export default class CreateExpense extends Component {
     };
   }
 
-  onChangeName(e) {
+  onChangeName(value) {
     this.setState({
-      name: e.target.value
+      name: value
     });
   }
 
-  onChangeDescription(e) {
+  onChangeDescription(value) {
     this.setState({
-      description: e.target.value
+      description: value
+    });
+  }
+
+  onChangeInitialValue(value) {
+    this.setState({
+      initialValue: value
     });
   }
 
@@ -73,7 +82,7 @@ export default class CreateExpense extends Component {
             onChangeName={this.onChangeName}
             onChangeDescription={this.onChangeDescription}
             onChangeInitialValue={this.onChangeInitialValue}
-            onConfirmClick={this.onConfirmClick}
+            onConfirmClick={this.createExpense}
             name={this.state.name}
             description={this.state.description}
             initialValue={this.state.initialValue}

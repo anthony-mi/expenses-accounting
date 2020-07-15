@@ -1,3 +1,5 @@
+import React, { Component } from "react";
+
 export default class ExpenseForm extends Component {
     constructor(props) {
       super(props);

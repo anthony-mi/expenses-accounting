@@ -7,7 +7,6 @@ import './App.css';
 import CreateExpense from "./components/create-expense.component";
 import Expense from "./components/expense.component";
 import ExpensesList from "./components/expenses-list.component";
-import CreateExpense from "./components/create-expense.component";
 
 class App extends Component {
   render() {

@@ -14,11 +14,11 @@ class DataService {
   }
 
   createExpense(expense) {
-    return http.post("/expenses", data);
+    return http.post("/expenses", expense);
   }
 
   updateExpense(id, expense) {
-    return http.put(`/expenses/${id}`, data);
+    return http.put(`/expenses/${id}`, expense);
   }
 
   deleteExpense(id) {

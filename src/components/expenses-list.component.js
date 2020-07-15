@@ -53,7 +53,7 @@ export default class ExpensesList extends Component {
 
   setActiveExpense(expense, index) {
     this.setState({
-      currentExpense: tutorial,
+      currentExpense: expense,
       currentIndex: index
     });
   }

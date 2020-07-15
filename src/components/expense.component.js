@@ -136,7 +136,7 @@ export default class Expense extends Component {
                     name="value"
                     min="0"
                     onChange={this.onChangeValue}
-                    value={value}
+                    value={currentExpense.value}
                 />
               </div>
             </form>
