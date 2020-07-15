@@ -24,10 +24,6 @@ class DataService {
   deleteExpense(id) {
     return http.delete(`/expenses/${id}`);
   }
-
-  deleteAllExpenses() {
-    return http.delete(`/expenses`);
-  }
 }
 
 export default new DataService();
