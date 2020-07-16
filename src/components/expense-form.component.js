@@ -47,7 +47,7 @@ export default class ExpenseForm extends Component {
     
             <div className="form-group">
               <label htmlFor="description">Description</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
                 id="description"

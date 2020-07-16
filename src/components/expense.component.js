@@ -53,7 +53,7 @@ export default class Expense extends Component {
     this.setState(prevState => ({
         currentExpense: {
         ...prevState.currentExpense,
-        amount: amount
+        amount: Number(amount)
       }
     }));
   }
@@ -119,7 +119,7 @@ export default class Expense extends Component {
               </div>
               <div className="form-group">
                 <label htmlFor="description">Description</label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   id="description"
@@ -144,7 +144,7 @@ export default class Expense extends Component {
             </form>
 
             <button
-              className="badge badge-danger mr-2"
+              className="btn btn-danger mr-2"
               onClick={this.deleteExpense}
             >
               Delete
@@ -152,7 +152,7 @@ export default class Expense extends Component {
 
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={this.updateExpense}
             >
               Update

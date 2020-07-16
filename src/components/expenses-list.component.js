@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DataService from "../services/data.service";
 import { Link } from "react-router-dom";
+import '../loader.css';
 
 export default class ExpensesList extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class ExpensesList extends Component {
       expenses: [],
       currentExpense: null,
       currentIndex: -1,
-      searchingName: ""
+      searchingName: "",
+      isLoading: true
     };
   }
 
@@ -34,7 +36,8 @@ export default class ExpensesList extends Component {
     DataService.getExpenses()
       .then(response => {
         this.setState({
-          expenses: response.data
+          expenses: response.data,
+          isLoading: false
         });
         console.log(`'getExpenses()' response: ${response.data}`);
         console.log(response.data);
@@ -73,7 +76,7 @@ export default class ExpensesList extends Component {
   }
 
   render() {
-    const { searchingName, expenses, currentExpense, currentIndex } = this.state;
+    const { searchingName, expenses, currentExpense, currentIndex, isLoading } = this.state;
 
     return (
       <div className="list row">
@@ -100,6 +103,8 @@ export default class ExpensesList extends Component {
         <div className="col-md-6">
           <h4>Expenses</h4>
 
+          {isLoading && <div class="loader">Loading...</div>}
+
           <ul className="list-group">
             {expenses &&
                 expenses.map((expense, index) => (
@@ -116,7 +121,7 @@ export default class ExpensesList extends Component {
               ))}
           </ul>
         </div>
-        <div className="col-md-6">
+        <div className="border col-md-6">
           {currentExpense ? (
             <div>
               <h4>Expense</h4>
@@ -141,10 +146,33 @@ export default class ExpensesList extends Component {
 
               <Link
                 to={"/expenses/" + currentExpense.id}
-                className="badge badge-warning"
+                className="btn btn-warning"
               >
                 Edit
               </Link>
+
+              <br />
+              <div className="input-group mt-3 mb-3">
+                <input
+                  type="number" 
+                  min="0"
+                  step="0.01"
+                  className="new-amount"
+                  placeholder="Add amount"
+                  // value={newAmount}
+                  // onChange={this.onChangeNewAmount}
+              />
+            <div className="input-group-append">
+              <button
+                className="btn btn-outline-primary"
+                type="button"
+                onClick={this.addAmount}
+              >
+                Add
+              </button>
+            </div>
+            </div>
+
             </div>
           ) : (
             <div>
