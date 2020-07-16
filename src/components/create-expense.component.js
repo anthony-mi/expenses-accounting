@@ -10,7 +10,7 @@ export default class CreateExpense extends Component {
 
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeInitialValue = this.onChangeInitialValue.bind(this);
+    this.onChangeAmount = this.onChangeAmount.bind(this);
     this.createExpense = this.createExpense.bind(this);
     this.newExpense = this.newExpense.bind(this);
 
@@ -18,7 +18,7 @@ export default class CreateExpense extends Component {
       id: null,
       name: "",
       description: "",
-      initialValue: 0,
+      amount: 0,
       created: false
     };
   }
@@ -35,16 +35,17 @@ export default class CreateExpense extends Component {
     });
   }
 
-  onChangeInitialValue(value) {
+  onChangeAmount(value) {
     this.setState({
-      initialValue: value
+      amount: value
     });
   }
 
   createExpense() {
     var data = {
       name: this.state.name,
-      description: this.state.description
+      description: this.state.description,
+      amount: Number(this.state.amount)
     };
 
     DataService.createExpense(data)
@@ -53,6 +54,7 @@ export default class CreateExpense extends Component {
           id: response.data.id,
           name: response.data.name,
           description: response.data.description,
+          amount: response.data.amount,
           created: true
         });
         console.log(`Expense creation response: ${response.data}`);
@@ -67,7 +69,7 @@ export default class CreateExpense extends Component {
       id: null,
       name: '',
       description: '',
-      initialValue: 0,
+      amount: 0,
       created: false
     });
   }
@@ -81,11 +83,11 @@ export default class CreateExpense extends Component {
           <Form 
             onChangeName={this.onChangeName}
             onChangeDescription={this.onChangeDescription}
-            onChangeInitialValue={this.onChangeInitialValue}
+            onChangeAmount={this.onChangeAmount}
             onConfirmClick={this.createExpense}
             name={this.state.name}
             description={this.state.description}
-            initialValue={this.state.initialValue}
+            amount={this.state.amount}
             />
         )}
       </div>

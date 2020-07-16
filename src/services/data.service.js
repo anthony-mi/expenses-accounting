@@ -14,6 +14,7 @@ class DataService {
   }
 
   createExpense(expense) {
+    console.log(expense);
     return http.post("/expenses", expense);
   }
 

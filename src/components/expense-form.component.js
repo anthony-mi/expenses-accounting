@@ -6,7 +6,7 @@ export default class ExpenseForm extends Component {
 
       this.onChangeName = this.onChangeName.bind(this);
       this.onChangeDescription = this.onChangeDescription.bind(this);
-      this.onChangeInitialValue = this.onChangeInitialValue.bind(this);
+      this.onChangeAmount = this.onChangeAmount.bind(this);
       this.handleFormConfirmation = this.handleFormConfirmation.bind(this);
     };
 
@@ -18,8 +18,8 @@ export default class ExpenseForm extends Component {
         this.props.onChangeDescription(e.target.value);
     }
 
-    onChangeInitialValue(e) {
-        this.props.onChangeInitialValue(e.target.value);
+    onChangeAmount(e) {
+        this.props.onChangeAmount(e.target.value);
     }
 
     handleFormConfirmation(e) {
@@ -29,7 +29,7 @@ export default class ExpenseForm extends Component {
     render() {
         const name = this.props.name;
         const description = this.props.description;
-        const initialValue = this.props.initialValue;
+        const amount = this.props.amount;
 
         return (<div>
             <div className="form-group">
@@ -59,14 +59,16 @@ export default class ExpenseForm extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="init-value">Initial value</label>
+              <label htmlFor="init-value">Initial amount</label>
+              <br />
               <input 
                 type="number" 
-                id="init-value" 
-                name="init-value"
+                id="init-amount" 
+                name="init-amount"
                 min="0"
-                onChange={this.onChangeInitialValue}
-                value={initialValue}
+                onChange={this.onChangeAmount}
+                value={amount}
+                step="0.01"
                 />
             </div>
     

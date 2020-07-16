@@ -37,6 +37,7 @@ export default class ExpensesList extends Component {
           expenses: response.data
         });
         console.log(`'getExpenses()' response: ${response.data}`);
+        console.log(response.data);
       })
       .catch(exception => {
         console.error(`'getExpenses()' exception: ${exception}`);
@@ -59,7 +60,7 @@ export default class ExpensesList extends Component {
   }
 
   searchByName() {
-    DataService.searchByName(this.state.searchingName)
+    DataService.getExpenseByName(this.state.searchingName)
       .then(response => {
         this.setState({
           expenses: response.data
@@ -133,9 +134,9 @@ export default class ExpensesList extends Component {
               </div>
               <div>
                 <label>
-                  <strong>Value:</strong>
+                  <strong>Amount:</strong>
                 </label>{" "}
-                {currentExpense.value}
+                {currentExpense.amount}
               </div>
 
               <Link

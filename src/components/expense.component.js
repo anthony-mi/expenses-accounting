@@ -6,7 +6,7 @@ export default class Expense extends Component {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeValue = this.onChangeValue.bind(this);
+    this.onChangeAmount = this.onChangeAmount.bind(this);
     this.getExpense = this.getExpense.bind(this);
     this.updateExpense = this.updateExpense.bind(this);
     this.deleteExpense = this.deleteExpense.bind(this);
@@ -16,7 +16,7 @@ export default class Expense extends Component {
         id: null,
         name: "",
         description: "",
-        value: 0
+        amount: 0
       },
       message: ""
     };
@@ -48,12 +48,12 @@ export default class Expense extends Component {
     }));
   }
 
-  onChangeValue(e) {
-    const value = e.target.value;
+  onChangeAmount(e) {
+    const amount = e.target.value;
     this.setState(prevState => ({
         currentExpense: {
         ...prevState.currentExpense,
-        value: value
+        amount: amount
       }
     }));
   }
@@ -129,14 +129,16 @@ export default class Expense extends Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="value">Value</label>
+                <label htmlFor="amount">Amount</label>
+                <br/>
                 <input 
                     type="number" 
-                    id="value" 
-                    name="value"
+                    id="amount" 
+                    name="amount"
                     min="0"
-                    onChange={this.onChangeValue}
-                    value={currentExpense.value}
+                    onChange={this.onChangeAmount}
+                    value={currentExpense.amount}
+                    step="0.01"
                 />
               </div>
             </form>
